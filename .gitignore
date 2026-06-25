@@ -1,0 +1,22 @@
+# Build outputs
+bin/
+obj/
+packages/
+
+# Temporales
+*.tmp
+*.bak
+debug-*
+
+# Reportes generados
+*-REPORT.md
+*-SUMMARY.md
+*-ANALYSIS.md
+
+# VFP compilados
+*.exe
+*.app
+*.fxp
+*.dbc
+*.dct
+*.dcx
