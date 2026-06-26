@@ -37,7 +37,7 @@ Ver `.claude/docs/vfp-build.md`.
 
 ## Encoding de archivos
 
-Los archivos `.prg` están en **Windows-1252**. El tool `Edit` los reescribe como UTF-8 corrompiendo los caracteres especiales (tildes, ñ, etc.).
+Los archivos `.prg` están en **Windows-1252**, definido en [.vscode/settings.json](.vscode/settings.json). El tool `Edit` los reescribe como UTF-8 corrompiendo los caracteres especiales.
 
 **Regla:** para editar archivos `.prg` usar siempre PowerShell con encoding explícito:
 
