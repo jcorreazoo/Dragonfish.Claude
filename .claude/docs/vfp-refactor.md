@@ -88,9 +88,9 @@ Enddefine
 * Antes: loAcceso = Createobject("AccesoDatosSQL") dentro del método
 Define Class ServicioFacturacion As Custom
     oAccesoDatos = Null
-    Procedure Init(toAccesoDatos As Object)
+    Function Init(toAccesoDatos As Object) As Void
         This.oAccesoDatos = toAccesoDatos  && inyectado desde afuera
-    Endproc
+    Endfunc
 Enddefine
 * En tests: Createobject("ServicioFacturacion", Createobject("AccesoDatosMock"))
 ```
@@ -109,8 +109,7 @@ Function AbrirArchivo(tcRuta As String) As Boolean
         Use (tcRuta) In 0
         Return .T.
     Catch To loEx
-        This.LogError("AbrirArchivo", loEx)
-        Throw
+        goServicios.Errores.LevantarExcepcion(loEx)
     Endtry
 Endfunc
 ```

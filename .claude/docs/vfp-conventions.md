@@ -4,8 +4,8 @@
 
 ## Casing de keywords
 
-- Keywords en **Capital**: `Function`, `Endfunc`, `Procedure`, `Endproc`, `Define Class`, `Enddefine`, `Local`, `Return`, `Try`, `Catch`, `Finally`, `Endtry`, `If`, `Endif`, `This`, etc.
-- El cierre debe coincidir con la apertura: `Function` → `Endfunc`, `Procedure` → `Endproc`
+- Keywords en **Capital**: `Function`, `Endfunc`, `Define Class`, `Enddefine`, `Local`, `Return`, `Try`, `Catch`, `Finally`, `Endtry`, `If`, `Endif`, `This`, etc.
+- Siempre usar `Function`/`Endfunc` — nunca `Procedure`/`Endproc`, salvo indicación expresa.
 
 ---
 
@@ -39,11 +39,11 @@ Define Class NombreClase As ParentClass
     cPropiedad = ""
     nPropiedad = 0
 
-    Procedure Init(tcParam1, tnParam2)
+    Function Init(tcParam1, tnParam2) As Void
         This.cPropiedad = Evl(tcParam1, "")
         This.nPropiedad = Evl(tnParam2, 0)
         Return Dodefault()
-    Endproc
+    Endfunc
 
     *-----------------------------------------------------------------------------------------
     Function MetodoPublico( tcInput As String ) As Boolean
@@ -53,17 +53,17 @@ Define Class NombreClase As ParentClass
             * lógica principal
             llExito = .T.
         Catch To loError
-            This.LogError("MetodoPublico", loError)
+            goServicios.Errores.LevantarExcepcion(loError)
         Finally
             * liberar recursos
         Endtry
         Return llExito
     Endfunc
 
-    Procedure Destroy()
+    Function Destroy() As Void
         This.oObjeto = Null
         Return Dodefault()
-    Endproc
+    Endfunc
 
 Enddefine
 ```

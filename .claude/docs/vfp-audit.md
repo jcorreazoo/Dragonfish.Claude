@@ -40,7 +40,7 @@ Checklist para el modo **Auditor**. Reportar cada issue con severidad 🔴 Alta 
 ### Estilo y convenciones
 - [ ] Nomenclatura húngara respetada
 - [ ] Keywords en Capital
-- [ ] `Function`/`Endfunc`, `Procedure`/`Endproc` consistentes
+- [ ] Siempre `Function`/`Endfunc` — nunca `Procedure`/`Endproc`
 - [ ] Parámetros tipados (`As String`, `As Boolean`, etc.)
 - [ ] Header de clase con `*===...===` y propósito
 

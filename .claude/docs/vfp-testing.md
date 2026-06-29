@@ -3,24 +3,24 @@
 ## Estructura de un test
 
 ```foxpro
-Define Class Test_NombreModulo As TestCase
+Define Class ztestNombreModulo As FxuTestCase OF FxuTestCase.prg
 
     oSUT = Null
 
-    Procedure Setup()
+    Function Setup
         This.oSUT = Createobject("ClaseATestear")
-    Endproc
+    Endfunc
 
-    Procedure TearDown()
+    Function TearDown
         This.oSUT = Null
-    Endproc
+    Endfunc
 
-    Procedure Test_Metodo_DebeResultado_CuandoCondicion()
+    Function zTestU_Metodo_DebeResultado_CuandoCondicion
         Local lcInput, lcEsperado, lcResultado
         lcInput    = "valor"                          && Arrange
         lcResultado = This.oSUT.Procesar(lcInput)     && Act
-        This.AssertEquals(lcEsperado, lcResultado, "msg")  && Assert
-    Endproc
+        This.AssertEquals("msg", lcEsperado, lcResultado)  && Assert
+    Endfunc
 
 Enddefine
 ```
@@ -30,19 +30,22 @@ Enddefine
 ## Nomenclatura de tests
 
 ```
-Test_[Método]_Debe[Comportamiento]_Cuando[Condición]
+zTestU_[Método]_Debe[Comportamiento]_Cuando[Condición]
 ```
 
+- `zTestU_` — test unitario (default, salvo indicación expresa)
+- `zTestI_` — test de integración (solo cuando se indique explícitamente)
+
 Ejemplos:
-- `Test_ProcesarVenta_DebeRetornarTrue_CuandoClienteTieneCredito`
-- `Test_ValidarEmail_DebeGenerarError_CuandoEmailEsInvalido`
+- `zTestU_ProcesarVenta_DebeRetornarTrue_CuandoClienteTieneCredito`
+- `zTestU_ValidarEmail_DebeGenerarError_CuandoEmailEsInvalido`
 
 ---
 
 ## Assertions disponibles
 
 ```foxpro
-This.AssertEquals(esperado, actual, "msg")
+This.AssertEquals("msg", esperado, actual)
 This.AssertTrue("msg", expr)
 This.AssertTrue("msg", !expr)      && negación — AssertFalse NO existe en VFP
 This.AssertNull("msg", var)
@@ -71,12 +74,12 @@ Define Class RepositorioMock As Custom
     Dimension aDatos[1, 2]
     nCount = 0
 
-    Procedure AgregarDato(tnId As Integer, tcValor As String)
+    Function AgregarDato(tnId As Integer, tcValor As String) As Void
         This.nCount = This.nCount + 1
         Dimension This.aDatos[This.nCount, 2]
         This.aDatos[This.nCount, 1] = tnId
         This.aDatos[This.nCount, 2] = tcValor
-    Endproc
+    Endfunc
 Enddefine
 ```
 
@@ -102,7 +105,7 @@ Organic.Tests/
 ├── ClasesMock.dbf
 ├── clasesdeprueba/       && helpers y utilidades
 ├── Tests/
-│   ├── Test_Ventas.prg
+│   ├── ztestVentas.prg
 │   └── ...
 └── _dovfp_excluidos/     && tests deshabilitados
 ```
